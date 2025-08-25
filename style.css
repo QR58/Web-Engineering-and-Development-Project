@@ -1,0 +1,420 @@
+@font-face {
+  font-family: "squeidFont";
+  src: url("./Resources/squeid-gameis-font/SqueidGameis-gw0W4.ttf");
+}
+
+body {
+  background-image: url("./Resources/patterned background.png");
+  /* background-color: rgb(29, 58, 106); */
+}
+
+#title {
+  text-align: center;
+  font-family: squeidFont;
+  font-style: italic;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 5em;
+
+  text-shadow: 3px 3px 6px black;
+  color: whitesmoke;
+
+  position: relative;
+  top: 100px;
+  left: 7px;
+}
+
+#score {
+  text-align: center;
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 3em;
+  letter-spacing: 3px;
+
+  text-shadow: 2px 2px 3px black;
+  color: green;
+
+  position: relative;
+  right: 230px;
+  top: 0px;
+
+  display: none;
+}
+
+#life {
+  text-align: center;
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 3em;
+  letter-spacing: 3px;
+
+  text-shadow: 2px 2px 3px black;
+  color: red;
+
+  position: absolute;
+  right: 340px;
+  top: 5px;
+
+  display: none;
+}
+
+#gameword {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  text-shadow: 2px 2px 3px black;
+  color: orange;
+
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: none;
+}
+
+#score-form {
+  display: none;
+}
+
+#user-input {
+  color: orange;
+  background-color: rgb(93, 112, 142);
+
+  border: 2px 2px whitesmoke;
+  outline-style: solid;
+  outline-color: whitesmoke;
+  padding: 3px;
+  width: 400px;
+  height: 30px;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: large;
+
+  position: relative;
+  top: 270px;
+  left: 34%;
+
+  display: none;
+}
+
+#player-name {
+  color: orange;
+  background-color: rgb(93, 112, 142);
+
+  border: 2px 2px whitesmoke;
+  outline-style: solid;
+  outline-color: whitesmoke;
+  padding: 3px;
+  width: 210px;
+  height: 30px;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: large;
+
+  position: relative;
+  top: 175px;
+  left: 41%;
+}
+/* Changing placeholder color */
+::placeholder {
+  font-family: squeidFont;
+  letter-spacing: 1px;
+  color: orange;
+}
+
+#start-button {
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 3em;
+  letter-spacing: 3px;
+  padding: 12px 25px;
+  /*up-down:15px; left-right:30px;*/
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: orange;
+  color: whitesmoke;
+  text-shadow: 2px 2px 3px black;
+  position: relative;
+  left: 130px;
+  top: 320px;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+#start-button:hover {
+  background-color: greenyellow;
+}
+
+#leaderBoard-button {
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 3em;
+  letter-spacing: 2px;
+  padding: 12px 25px;
+  /*up-down:15px; left-right:30px;*/
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: orange;
+  color: whitesmoke;
+  text-shadow: 2px 2px 3px black;
+  position: relative;
+  left: 700px;
+  top: 248px;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+#leaderBoard-button:hover {
+  background-color: #c30037;
+}
+
+p.enter-name {
+  text-align: center;
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 3px;
+
+  text-shadow: 2px 2px 3px black;
+  color: orange;
+
+  position: relative;
+  top: 200px;
+}
+
+#countdown {
+  font-family: squeidFont;
+  font-weight: 600;
+  font-size: 15em;
+
+  text-shadow: 5px 5px 10px black;
+  color: white;
+
+  position: absolute;
+  top: 3%;
+  right: 45%;
+
+  display: none;
+}
+/* For making the cursor stop at the end of the title. */
+.titleAnimation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ------------For Game Over popUp-------------- */
+.container-popUp {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease-in-out;
+  /*background-color: rgba(0, 0, 0, 0.4); optional dark overlay*/
+  z-index: -1;
+}
+
+.container-popUp.open {
+  opacity: 1;
+  z-index: 999;
+  display: flex;
+}
+
+.popUp {
+  background-color: rgb(93, 112, 142);
+  width: 500px;
+  height: 450px;
+  position: relative;
+  top: 45%;
+  left: 25%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  border: 5px solid orange;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+}
+
+.popUp h1 {
+  color: orange;
+  font-family: squeidFont;
+  letter-spacing: 3px;
+  font-size: 40px;
+}
+
+.restart-button {
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 4px;
+  width: 450px;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: orange;
+  color: whitesmoke;
+  text-shadow: 2px 2px 3px black;
+  position: absolute;
+  bottom: 15px;
+  left: 72px;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+.restart-button:hover {
+  background-color: #c30037;
+}
+
+/*------------------Text Animation------------------- */
+h1.typewriter {
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 20ch;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+/*------------------Leader Board Style (For the button in the main page)------------------- */
+
+.leaderboard-container {
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: orange;
+  color: white;
+}
+
+.leaderboard-header {
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 3em;
+  letter-spacing: 3px;
+  color: orange;
+  text-shadow: 2px 2px 3px black;
+}
+
+th.squeid-font {
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 2em;
+  letter-spacing: 3px;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+}
+
+.records-font {
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 1.5em;
+  letter-spacing: 3px;
+  color: orange;
+  text-shadow: 2px 2px 3px black;
+}
+
+.back-button {
+  font-family: squeidFont;
+  font-weight: bold;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  padding: 10px 20px;
+  background-color: orange;
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #c30037;
+}
+
+/* --------------Timer Style------------- */
+
+#timer-container {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 42%;
+  transform: translateX(-35%);
+  width: 80%;
+  max-width: 800px;
+  height: 20px;
+  background: linear-gradient(to right, #e0e0e0, #f8f8f8);
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: 2px solid #ccc;
+}
+
+#timer-bar {
+  height: 100%;
+  width: 0%;
+  transition: width 1s linear;
+  border-radius: 12px 0 0 12px;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+}
